@@ -16,12 +16,12 @@ gulp.task("jshint", function() {
 	.pipe(jshint.reporter("default"));
 });
 
-gulp.task("minifycss", function() {
+/*gulp.task("minifycss", function() {
 	return gulp.src("web/css/*.css")
 	.pipe(rename({suffix: ".min"}))
 	.pipe(minifycss())
-	.pipe(gulp.dest("Css"));
-});
+	.pipe(gulp.dest("css"));
+});*/
 
 gulp.task('minifyjs', function () {
 	gulp.src('web/js/*.js')
@@ -42,6 +42,24 @@ gulp.task("html", function() {
 	.pipe(gulp.dest("dist"));
 });
 
+gulp.task("css", function() {
+	gulp.src("web/css/*.css")
+	.pipe(gulp.dest("dist/css"));
+});
+
+gulp.task("fonts", function() {
+	gulp.src("web/fonts/*")
+	.pipe(gulp.dest("dist/fonts"));
+});
+gulp.task("images", function() {
+	gulp.src("web/images/*")
+	.pipe(gulp.dest("dist/images"));
+});
+gulp.task("core", function() {
+	gulp.src("web/js/core/*")
+	.pipe(gulp.dest("dist/js/core"));
+});
+
 gulp.task("default", ["jshint", "clean"], function() {
-	gulp.start("clean", "minifycss", "minifyjs", "html");
+	gulp.start("minifyjs", "html", "css", "fonts", "images", "core");
 });

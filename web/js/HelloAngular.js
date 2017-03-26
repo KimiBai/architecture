@@ -1,6 +1,6 @@
 var myModule = angular.module("MyModule", []);
 
-//directive
+//directive 
 myModule.directive("hello", function() {
 	return {
 		restrict: 'AEMC',
